@@ -1,0 +1,15 @@
+{
+  "name": "exchangeratesapi",
+  "version": "1.0.0",
+  "description": "tareaClase12Exchange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mimo-dev",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^0.9.3",
+    "jquery": "^3.6.0"
+  }
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" class="background-black">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./src/styles/css/myCSS.css" />
+    <title>Exchange rates</title>
+  </head>
+  <body>
+    <header class="has-text-centered">
+      <img class="titulo" src="./src/images/New Project.jpg" alt="" />
+    </header>
+
+    <div class="columns container is-fluid">
+      <div class="header column">
+        <div class="columns is-centered is-vcentered">
+          <div class="column is-one-quarter">
+            <form class="box">
+              <p>Menu de datos</p>
+              <div class="field box">
+                <label class="label">Fecha</label>
+                <div class="control">
+                  <input
+                    data-validation="date"
+                    type="date"
+                    name=""
+                    id="selecciona-fecha"
+                    min="2001-01-01"
+                    class="fecha input is-primary is-small"
+                  />
+                </div>
+                <p id="valida-fecha" class="is-hidden help is-danger">
+                  Type your username here
+                </p>
+              </div>
+
+              <div class="field box">
+                <label class="label">Tipo de cambio</label>
+                <div id="select" class="select">
+                  <select id="seleccion">
+                    <option>Monedas</option>
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
+                    <option>JPY</option>
+                    <option>AUD</option>
+                    <option>CAD</option>
+                    <option>CYP</option>
+                    <option>NZD</option>
+                  </select>
+                </div>
+                <p id="valida-moneda" class="is-hidden help is-danger">
+                  Type your username here
+                </p>
+              </div>
+              <div id="pares" class="box">
+                <label class="label"> Pares</label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  USD
+                </label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  EUR
+                </label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  GBP
+                </label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  JPY
+                </label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  AUD
+                </label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  CAD
+                </label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  CYP
+                </label>
+                <label class="checkbox">
+                  <input class="elegir" type="checkbox" />
+                  NZD
+                </label>
+                <p id="valida-pares" class="is-hidden help is-danger">
+                  Type your username here
+                </p>
+              </div>
+              <div class="box">
+                <label class="label">Monto a convertir</label>
+                <input
+                  id="monto"
+                  class="input is-primary is-small"
+                  placeholder="1 por defecto"
+                  type="number"
+                />
+              </div>
+              <button id="boton" class="button is-primary">Continuar</button>
+            </form>
+          </div>
+          <div
+            id="precios"
+            class="is-hidden column content box is-one-third ml-5"
+          >
+            <ul class="ml-8"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var today = new Date();
+      var date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1 >= 10
+          ? today.getMonth() + 1
+          : `0${today.getMonth() + 1}`) +
+        "-" +
+        today.getDate();
+      document.getElementById("selecciona-fecha").setAttribute("max", date);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./src/scripts/jsExchange.js"></script>
+    <script src="./src/scripts/validaFormulario.js"></script>
+  </body>
+</html>
