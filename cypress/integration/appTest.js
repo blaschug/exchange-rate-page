@@ -68,7 +68,7 @@ context("testExchange", () => {
     it("Si se saca un par y se apreta continuar, deberia borrar el par quitado", () => {
       cy.get("#pares-container input:first").uncheck();
       cy.get("#boton").click();
-      cy.get("#precios").find("li").should("have.length", 7);
+      cy.get("#precios").find("li").should("have.length", 6);
     });
   });
 });
