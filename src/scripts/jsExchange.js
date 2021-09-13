@@ -3,11 +3,13 @@ const precios = $("#precios");
 const boton = $("#boton");
 const monedaBase = $("#moneda-base");
 const fecha = $("#fecha");
+const body = $("#body");
 boton.on("click", obtenerPares);
 
 function obtenerPares(e) {
   e.preventDefault();
   if (validarFormulario()) {
+    body.addClass("waiting");
     mostrarResultados();
     fetch(crearURL(fecha.val(), monedaBase.val(), monto.val()))
       .then((respuesta) => respuesta.json())
@@ -22,13 +24,13 @@ function obtenerPares(e) {
             )
           );
         });
+        body.removeClass("waiting");
       })
       .catch((error) => {
-        console.error("Fallo:", error)
+        console.error("Fallo:", error);
       });
   }
 }
-
 
 function mostrarResultados() {
   precios.removeClass("is-hidden");
@@ -48,5 +50,5 @@ function obtenerSimbolos() {
 }
 
 function crearURL(fecha, base, monto) {
-  return `https://api.exchangerate.host/${fecha}?base=${base}&symbols=${obtenerSimbolos()}&amount=${monto}`
+  return `https://api.exchangerate.host/${fecha}?base=${base}&symbols=${obtenerSimbolos()}&amount=${monto}`;
 }
