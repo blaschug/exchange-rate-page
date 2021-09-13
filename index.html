@@ -29,21 +29,20 @@
                     data-validation="date"
                     type="date"
                     name=""
-                    id="selecciona-fecha"
+                    id="fecha"
                     min="2001-01-01"
                     class="fecha input is-primary is-small"
                   />
                 </div>
-                <p id="valida-fecha" class="is-hidden help is-danger">
+                <p id="fecha-error" class="is-hidden help is-danger">
                   Debe ingresar una fecha
                 </p>
               </div>
 
               <div class="field box">
-                <label class="label">Tipo de cambio</label>
-                <div id="select" class="select">
-                  <select id="seleccion">
-                    <option>Monedas</option>
+                <label class="label">Selecciona una moneda de base</label>
+                <div id="moneda-base-container" class="select">
+                  <select id="moneda-base">
                     <option>USD</option>
                     <option>EUR</option>
                     <option>GBP</option>
@@ -54,12 +53,9 @@
                     <option>NZD</option>
                   </select>
                 </div>
-                <p id="valida-moneda" class="is-hidden help is-danger">
-                  Debe ingresar una moneda base
-                </p>
               </div>
-              <div id="pares" class="box">
-                <label class="label"> Pares</label>
+              <div id="pares-container" class="box">
+                <label class="label"> Selecciona uno o mas pares</label>
                 <label class="checkbox">
                   <input class="elegir" type="checkbox" />
                   USD
@@ -92,7 +88,7 @@
                   <input class="elegir" type="checkbox" />
                   NZD
                 </label>
-                <p id="valida-pares" class="is-hidden help is-danger">
+                <p id="pares-error" class="is-hidden help is-danger">
                   Debe elegir minimo 1 par
                 </p>
               </div>
@@ -101,9 +97,12 @@
                 <input
                   id="monto"
                   class="input is-primary is-small"
-                  placeholder="1 por defecto"
+                  value=1
                   type="number"
                 />
+                <p id="monto-error" class="is-hidden help is-danger">
+                  El valor del monto debe ser mayor a 0
+                </p>
               </div>
               <button id="boton" class="button is-primary">Continuar</button>
             </form>
@@ -127,7 +126,7 @@
           : `0${today.getMonth() + 1}`) +
         "-" +
         today.getDate();
-      document.getElementById("selecciona-fecha").setAttribute("max", date);
+      document.getElementById("fecha").setAttribute("max", date);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./src/scripts/jsExchange.js"></script>
