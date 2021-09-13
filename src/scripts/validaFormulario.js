@@ -1,61 +1,73 @@
-function validadorFecha() {
-  const inputFecha = $("#selecciona-fecha");
-  if (!inputFecha[0].value) {
-    muestraError($("#valida-fecha"));
-    poneInputRojo(inputFecha);
+function validarFormulario() {
+  let fecha = validarFecha();
+  let pares = validarPares();
+  let monto = validarMonto();
+  if (fecha && pares && monto) {
+    return true;
+  }
+  return false;
+}
+
+function validarFecha() {
+  const fecha = $("#fecha");
+  const error = $("#fecha-error");
+  if (!fecha.val()) {
+    mostrarError(error);
+    ponerInputRojo(fecha);
     return false;
   }
-  if (inputFecha[0].value !== "" && inputFecha.hasClass("is-danger")) {
-    sacaError(inputFecha);
-    escondeError($("#valida-fecha"));
+  if (fecha.val() !== "" && fecha.hasClass("is-danger")) {
+    sacarError(fecha);
+    esconderError(error);
   }
   return true;
 }
 
-function validadoTipoCambio() {
-  const inputSeleccion = $("#seleccion");
-  if (inputSeleccion[0].value === "Monedas") {
-    muestraError($("#valida-moneda"));
-    poneInputRojo($("#select"));
+function validarPares() {
+  const error = $("#pares-error")
+  if (!obtenerSimbolos()) {
+    mostrarError(error);
     return false;
   }
-  if (
-    inputSeleccion[0].value !== "Monedas" &&
-    $("#select").hasClass("is-danger")
-  ) {
-    sacaError($("#select"));
-    escondeError($("#valida-moneda"));
+  if (obtenerSimbolos()) {
+    esconderError(error);
   }
   return true;
 }
 
-function validaPares() {
-  if (!devuelveSimbolos()) {
-    muestraError($("#valida-pares"));
+function validarMonto() {
+  const monto = $("#monto");
+  const error = $("#monto-error");
+
+  if (monto.val() <= 0) {
+    mostrarError(error);
+    ponerInputRojo(monto);
     return false;
   }
-  if (devuelveSimbolos()) {
-    escondeError($("#valida-pares"));
+  if (monto.val() > 0 && monto.hasClass("is-danger")) {
+    sacarError(monto);
+    esconderError(error);
   }
   return true;
+
 }
 
-function sacaError(elemento) {
-  elemento.removeClass("is-danger");
-  if (elemento.hasClass("fecha")) {
-    elemento.addClass("is-primary");
+function sacarError(el) {
+  el.removeClass("is-danger");
+  if (el.hasClass("fecha")) {
+    el.addClass("is-primary");
   }
 }
 
-function escondeError(elemento) {
-  elemento.addClass("is-hidden");
+function esconderError(el) {
+  el.addClass("is-hidden");
 }
 
-function muestraError(elemento) {
-  elemento.removeClass("is-hidden");
+function mostrarError(el) {
+  el.removeClass("is-hidden");
 }
 
-function poneInputRojo(elemento) {
-  elemento.removeClass("is-primary");
-  elemento.addClass("is-danger");
+function ponerInputRojo(el) {
+  el.removeClass("is-primary");
+  el.addClass("is-danger");
 }
