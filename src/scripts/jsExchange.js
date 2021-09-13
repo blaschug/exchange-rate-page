@@ -3,7 +3,7 @@ const precios = $("#precios");
 const boton = $("#boton");
 const monedaBase = $("#moneda-base");
 const fecha = $("#fecha");
-const body = $("#body");
+const body = $("body");
 boton.on("click", obtenerPares);
 
 function obtenerPares(e) {

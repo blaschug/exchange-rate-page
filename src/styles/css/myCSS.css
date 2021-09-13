@@ -3,5 +3,5 @@ label {
 }
 
 body.waiting * {
-  cursor: progress;
+  cursor: wait;
 }
