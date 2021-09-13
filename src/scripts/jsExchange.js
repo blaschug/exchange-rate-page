@@ -6,6 +6,7 @@ const fecha = $("#fecha");
 boton.on("click", obtenerPares);
 
 function obtenerPares(e) {
+  e.preventDefault();
   if (validarFormulario()) {
     mostrarResultados();
     fetch(crearURL(fecha.val(), monedaBase.val(), monto.val()))
@@ -25,9 +26,7 @@ function obtenerPares(e) {
       .catch((error) => {
         console.error("Fallo:", error)
       });
-    e.preventDefault();
   }
-  e.preventDefault();
 }
 
 
